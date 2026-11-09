@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedeMeetUp - Seminars & Workshops for Medical Students</title>
+    <meta name="description" content="Find and book medical seminars, CMEs, and workshops in your city.  ">
+    <link rel="icon" type="image/png" href="img/logo/logo.png">
+    <link rel="canonical" href="https://Medemeetup.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MedeMeetUp">
+    <meta property="og:title" content="MedeMeetUp | Your Medical Learning Companion">
+    <meta property="og:description"
+        content="Discover, book and attend trusted medical seminars, workshops and conferences with MedeMeetUp.">
+    <meta property="og:url" content="https://Medemeetup.com/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="MedeMeetUp | Your Medical Learning Companion">
+    <meta name="twitter:description"
+        content="Discover, book and attend trusted medical seminars, workshops and conferences with MedeMeetUp.">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0037b0', 'primary-container': '#1d4ed8', secondary: '#0058be',
+                        surface: '#f9f9ff', 'surface-container': '#e7eeff', 'surface-container-low': '#f0f3ff',
+                        'surface-container-highest': '#d8e3fb', 'on-surface': '#111c2d',
+                        'on-surface-variant': '#434655', 'on-primary': '#ffffff', 'outline-variant': '#c4c5d7'
+                    },
+                    maxWidth: { page: '1280px' },
+                    fontFamily: { display: ['Hanken Grotesk', 'sans-serif'], body: ['Manrope', 'sans-serif'] },
+                    boxShadow: {
+                        soft: '0 12px 40px rgba(30, 64, 175, .09)',
+                        premium: '0 25px 70px rgba(0, 55, 176, .18)',
+                        glow: '0 18px 45px rgba(59, 130, 246, .3)'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        :root {
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        a,
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(37, 99, 235, .45);
+            outline-offset: 3px;
+        }
+
+        .dot-pattern {
+            background-image: radial-gradient(rgba(0, 55, 176, .22) .7px, transparent .7px);
+            background-size: 25px 25px;
+        }
+
+        .nav-shell {
+            background: transparent;
+            border-color: transparent;
+            transition: background .35s, border-color .35s, box-shadow .35s;
+        }
+
+        .nav-shell.scrolled,
+        .nav-shell.menu-open {
+            background: rgba(249, 249, 255, .86);
+            border-color: rgba(196, 197, 215, .42);
+            box-shadow: 0 8px 30px rgba(17, 28, 45, .06);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -8px;
+            height: 2px;
+            border-radius: 999px;
+            background: #0037b0;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link.active {
+            color: #0037b0;
+        }
+
+        .store-button {
+            width: 168px;
+            height: 52px;
+            display: inline-flex;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(17, 28, 45, .14);
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .store-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .store-button:hover {
+            transform: translateY(-4px) scale(1.025);
+            box-shadow: 0 16px 35px rgba(0, 55, 176, .22);
+        }
+
+        .float-phone {
+            animation: float 5.5s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        .float-phone-delayed {
+            animation: floatAlt 6s ease-in-out .45s infinite;
+            will-change: transform;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(28px) rotate(-6deg);
+            }
+
+            50% {
+                transform: translateY(10px) rotate(-4deg);
+            }
+        }
+
+        @keyframes floatAlt {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(3deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(1deg);
+            }
+        }
+
+        .feature-card,
+        .benefit-card,
+        .step-card {
+            transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s, border-color .35s;
+        }
+
+        .feature-card:hover,
+        .benefit-card:hover,
+        .step-card:hover {
+            transform: translateY(-9px) scale(1.015);
+            border-color: rgba(37, 99, 235, .42);
+            box-shadow: 0 24px 60px rgba(0, 55, 176, .14);
+        }
+
+        .feature-card .icon,
+        .step-card .icon {
+            transition: transform .4s, background .4s;
+        }
+
+        .feature-card:hover .icon {
+            transform: translateY(-3px) scale(1.1);
+            background: #0037b0;
+            color: white;
+        }
+
+        .step-card:hover .icon {
+            transform: rotate(8deg) scale(1.08);
+        }
+
+        .marquee-viewport {
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee var(--duration, 32s) linear infinite;
+            will-change: transform;
+        }
+
+        .marquee-viewport:hover .marquee-track,
+        .marquee-viewport:focus-within .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .phone-card {
+            width: 230px;
+            height: 500px;
+            flex: 0 0 auto;
+            padding: 6px;
+            margin-right: 22px;
+            background: white;
+            border: 1px solid rgba(196, 197, 215, .45);
+            border-radius: 16px;
+            box-shadow: 0 18px 45px rgba(17, 28, 45, .12);
+            overflow: hidden;
+        }
+
+        .phone-card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 11px;
+        }
+
+        .testimonial-card {
+            width: min(390px, calc(100vw - 48px));
+            flex: 0 0 auto;
+            margin-right: 24px;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.025);
+            box-shadow: 0 24px 60px rgba(0, 55, 176, .14);
+        }
+
+        .connector::before {
+            content: '';
+            position: absolute;
+            top: 32px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #93b4ff 15%, #2563eb 50%, #93b4ff 85%, transparent);
+            background-size: 200% 100%;
+            animation: lineFlow 3s linear infinite;
+        }
+
+        @keyframes lineFlow {
+            to {
+                background-position: -200% 0;
+            }
+        }
+
+        .faq-answer {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .35s ease;
+        }
+
+        .faq-answer>div {
+            overflow: hidden;
+        }
+
+        .faq-item.open .faq-answer {
+            grid-template-rows: 1fr;
+        }
+
+        .faq-icon {
+            transition: transform .35s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .cta-orb {
+            animation: orb 7s ease-in-out infinite;
+        }
+
+        .scroll-top {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: opacity .3s, visibility .3s, transform .3s, background .3s;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @keyframes orb {
+            50% {
+                transform: translate3d(15px, -18px, 0) scale(1.08);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .phone-card {
+                width: 180px;
+                height: 390px;
+                margin-right: 14px;
+            }
+
+            .store-button {
+                width: 148px;
+                height: 46px;
+            }
+
+            .connector::before {
+                display: none;
+            }
+
+            [data-aos-delay] {
+                transition-delay: 0s !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body antialiased">
+    <a href="#main"
+        class="fixed left-4 top-3 z-[100] -translate-y-20 rounded-lg bg-primary px-4 py-2 text-white transition focus:translate-y-0">Skip
+        to content</a>
+
+    <header id="navbar" class="nav-shell fixed inset-x-0 top-0 z-50 border-b">
+        <div class="mx-auto flex max-w-page items-center justify-between px-4 py-4 md:px-10">
+            <a href="#home" class="flex items-center" aria-label="MedeMeetUp home">
+                <img src="img/logo/logo.png" alt="MedeMeetUp Logo" class="h-12 w-auto">
+            </a>
+            <nav class="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+                <a class="nav-link active text-sm font-semibold text-on-surface-variant" href="#home">Home</a>
+                <a class="nav-link text-sm font-semibold text-on-surface-variant" href="#features">Features</a>
+                <a class="nav-link text-sm font-semibold text-on-surface-variant" href="#how-it-works">How It Works</a>
+                <a class="nav-link text-sm font-semibold text-on-surface-variant" href="#testimonials">Testimonials</a>
+                <a class="nav-link text-sm font-semibold text-on-surface-variant" href="#faq">FAQ</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="#download"
+                    class="hidden rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-900/15 transition hover:-translate-y-0.5 hover:bg-primary-container sm:inline-flex">Download
+                    App</a>
+                <button id="menuButton" class="grid h-11 w-11 place-items-center rounded-full text-primary md:hidden"
+                    aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <nav id="mobileMenu"
+            class="mx-4 hidden rounded-2xl border border-outline-variant/40 bg-white/95 p-3 shadow-premium md:hidden"
+            aria-label="Mobile navigation">
+            <a class="mobile-link block rounded-xl px-4 py-3 font-semibold text-on-surface-variant hover:bg-blue-50 hover:text-primary"
+                href="#home">Home</a>
+            <a class="mobile-link block rounded-xl px-4 py-3 font-semibold text-on-surface-variant hover:bg-blue-50 hover:text-primary"
+                href="#features">Features</a>
+            <a class="mobile-link block rounded-xl px-4 py-3 font-semibold text-on-surface-variant hover:bg-blue-50 hover:text-primary"
+                href="#how-it-works">How It Works</a>
+            <a class="mobile-link block rounded-xl px-4 py-3 font-semibold text-on-surface-variant hover:bg-blue-50 hover:text-primary"
+                href="#testimonials">Testimonials</a>
+            <a class="mobile-link block rounded-xl px-4 py-3 font-semibold text-on-surface-variant hover:bg-blue-50 hover:text-primary"
+                href="#faq">FAQ</a>
+            <a class="mt-2 block rounded-xl bg-primary px-4 py-3 text-center font-bold text-white"
+                href="#download">Download App</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section id="home" class="relative overflow-hidden pb-20 pt-32 md:pb-28 md:pt-44">
+            <div class="dot-pattern absolute inset-0 -z-20"></div>
+            <div class="absolute left-[-10%] top-20 -z-10 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl"></div>
+            <div class="absolute right-[-8%] top-24 -z-10 h-[30rem] w-[30rem] rounded-full bg-indigo-200/40 blur-3xl">
+            </div>
+            <div class="mx-auto grid max-w-page items-center gap-16 px-4 md:px-10 lg:grid-cols-2">
+                <div data-aos="fade-right" data-aos-duration="900">
+                    <div
+                        class="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/75 px-4 py-2 text-primary shadow-sm backdrop-blur">
+                        <span class="material-symbols-outlined text-base"
+                            style="font-variation-settings:'FILL' 1">verified</span>
+                        <span class="text-xs font-bold uppercase tracking-wider">For Medical Students, By Medical
+                            Experts</span>
+                    </div>
+                    <h1
+                        class="font-display text-5xl font-extrabold leading-[1.05] tracking-[-.035em] text-on-surface sm:text-6xl md:text-7xl">
+                        Learn. Connect.<br><span
+                            class="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">Grow.</span>
+                    </h1>
+                    <p class="mt-7 max-w-xl text-lg leading-8 text-on-surface-variant">Your Medical Learning Companion.
+                        Discover, book and attend the best medical seminars, workshops, conferences and more – all in
+                        one place.</p>
+                    <div class="mt-9 flex flex-wrap gap-4">
+                        <a class="store-button" href="#download" aria-label="Get MedeMeetUp on Google Play"><img
+                                src="img/googleplaandappicon/google-play.png" alt="Get it on Google Play" width="168"
+                                height="52"></a>
+                        <a class="store-button" href="#download" aria-label="Download MedeMeetUp on the App Store"><img
+                                src="img/googleplaandappicon/app-store.jpg" alt="Download on the App Store" width="168"
+                                height="52"></a>
+                    </div>
+                    <div class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-on-surface-variant">
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-xl text-primary">verified_user</span>Verified
+                            Experts</span>
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-xl text-primary">event_available</span>Trusted
+                            Events</span>
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-xl text-primary">bolt</span>Easy Booking</span>
+                    </div>
+                </div>
+                <div class="relative flex min-h-[490px] items-center justify-center sm:min-h-[610px]"
+                    data-aos="fade-left" data-aos-duration="1000">
+                    <div class="absolute h-[75%] w-[75%] rounded-full bg-primary/10 blur-3xl"></div>
+                    <div class="float-phone relative z-10 w-[155px] sm:w-[220px]">
+                        <div class="rounded-[2.5rem] bg-on-surface p-2.5 shadow-premium"><img
+                                src="img/feature-graphics/2.jpeg" alt="MedeMeetUp event discovery screen"
+                                class="w-full rounded-[2rem]" width="220" height="476" fetchpriority="high"></div>
+                    </div>
+                    <div class="float-phone-delayed relative z-20 -ml-2 w-[175px] sm:-ml-1 sm:w-[255px]">
+                        <div class="rounded-[2.7rem] bg-on-surface p-2.5 shadow-premium"><img
+                                src="img/feature-graphics/1.jpeg" alt="MedeMeetUp app home screen"
+                                class="w-full rounded-[2.1rem]" width="255" height="550" fetchpriority="high"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="relative overflow-hidden bg-primary py-14" aria-label="MedeMeetUp statistics">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-950/20 via-transparent to-cyan-400/10"></div>
+            <div class="relative mx-auto grid max-w-page grid-cols-2 gap-8 px-4 text-center md:px-10 lg:grid-cols-4"
+                data-aos="fade-up" data-aos-duration="800">
+                <div>
+                    <div class="font-display text-4xl font-extrabold text-white"><span class="counter"
+                            data-value="500">0</span>+</div>
+                    <p class="mt-2 text-sm font-semibold text-blue-100">Medical Events</p>
+                </div>
+                <div>
+                    <div class="font-display text-4xl font-extrabold text-white"><span class="counter"
+                            data-value="1000">0</span>+</div>
+                    <p class="mt-2 text-sm font-semibold text-blue-100">Expert Speakers</p>
+                </div>
+                <div>
+                    <div class="font-display text-4xl font-extrabold text-white"><span class="counter"
+                            data-value="50000">0</span>+</div>
+                    <p class="mt-2 text-sm font-semibold text-blue-100">Medical Students</p>
+                </div>
+                <div>
+                    <div class="font-display text-4xl font-extrabold text-white"><span class="counter"
+                            data-value="100">0</span>+</div>
+                    <p class="mt-2 text-sm font-semibold text-blue-100">Cities Covered</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="bg-surface py-24 md:py-32">
+            <div class="mx-auto max-w-page px-4 md:px-10">
+                <div class="mx-auto mb-16 max-w-2xl text-center" data-aos="flip-up" data-aos-duration="800">
+                    <p class="mb-3 text-sm font-bold uppercase tracking-[.2em] text-primary">Built for your growth</p>
+                    <h2 class="font-display text-4xl font-bold tracking-tight md:text-5xl">Why Choose MedeMeetUp?</h2>
+                    <p class="mt-5 leading-7 text-on-surface-variant">Everything you need to learn, connect and grow in
+                        your medical career, consolidated into one powerful platform.</p>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <article class="feature-card rounded-2xl border border-outline-variant/35 bg-white p-8 shadow-soft"
+                        data-aos="zoom-up" data-aos-duration="750">
+                        <div
+                            class="icon mb-6 grid h-13 w-13 h-[52px] place-items-center rounded-xl bg-blue-50 text-primary">
+                            <span class="material-symbols-outlined text-3xl">event_note</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold">Top Medical Events</h3>
+                        <p class="mt-3 leading-7 text-on-surface-variant">Explore seminars, workshops and conferences
+                            across various medical specialties from top institutions.</p>
+                    </article>
+                    <article class="feature-card rounded-2xl border border-outline-variant/35 bg-white p-8 shadow-soft"
+                        data-aos="zoom-up" data-aos-delay="80" data-aos-duration="750">
+                        <div
+                            class="icon mb-6 grid h-[52px] w-[52px] place-items-center rounded-xl bg-blue-50 text-primary">
+                            <span class="material-symbols-outlined text-3xl">record_voice_over</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold">Verified Speakers</h3>
+                        <p class="mt-3 leading-7 text-on-surface-variant">Learn from experienced doctors, surgeons, and
+                            healthcare industry experts with proven track records.</p>
+                    </article>
+                    <article class="feature-card rounded-2xl border border-outline-variant/35 bg-white p-8 shadow-soft"
+                        data-aos="zoom-up" data-aos-delay="160" data-aos-duration="750">
+                        <div
+                            class="icon mb-6 grid h-[52px] w-[52px] place-items-center rounded-xl bg-blue-50 text-primary">
+                            <span class="material-symbols-outlined text-3xl">airplane_ticket</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold">Easy Booking</h3>
+                        <p class="mt-3 leading-7 text-on-surface-variant">Book your seat in seconds with a smooth,
+                            secure payment experience and instant confirmations.</p>
+                    </article>
+                    <article class="feature-card rounded-2xl border border-outline-variant/35 bg-white p-8 shadow-soft"
+                        data-aos="zoom-up" data-aos-duration="750">
+                        <div
+                            class="icon mb-6 grid h-[52px] w-[52px] place-items-center rounded-xl bg-blue-50 text-primary">
+                            <span class="material-symbols-outlined text-3xl">workspace_premium</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold">E-Certificates</h3>
+                        <p class="mt-3 leading-7 text-on-surface-variant">Get certified instantly and enhance your
+                            professional profile with verifiable digital credentials.</p>
+                    </article>
+                    <article class="feature-card rounded-2xl border border-outline-variant/35 bg-white p-8 shadow-soft"
+                        data-aos="zoom-up" data-aos-delay="80" data-aos-duration="750">
+                        <div
+                            class="icon mb-6 grid h-[52px] w-[52px] place-items-center rounded-xl bg-blue-50 text-primary">
+                            <span class="material-symbols-outlined text-3xl">history</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold">Track Bookings</h3>
+                        <p class="mt-3 leading-7 text-on-surface-variant">Manage your bookings, access tickets, and keep
+                            track of your learning schedule in one centralized place.</p>
+                    </article>
+                    <article class="feature-card rounded-2xl border border-outline-variant/35 bg-white p-8 shadow-soft"
+                        data-aos="zoom-up" data-aos-delay="160" data-aos-duration="750">
+                        <div
+                            class="icon mb-6 grid h-[52px] w-[52px] place-items-center rounded-xl bg-blue-50 text-primary">
+                            <span class="material-symbols-outlined text-3xl">notifications_active</span>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold">Stay Updated</h3>
+                        <p class="mt-3 leading-7 text-on-surface-variant">Get real-time updates and reminders about
+                            upcoming events and exclusive networking opportunities.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="overflow-hidden bg-surface-container-low py-24 md:py-32">
+            <div class="mx-auto max-w-page px-4 text-center md:px-10" data-aos="fade-left" data-aos-duration="900">
+                <p class="text-sm font-bold uppercase tracking-[.2em] text-primary">App Preview</p>
+                <h2 class="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">Everything at Your <span
+                        class="text-primary">Fingertips</span></h2>
+                <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-on-surface-variant">Browse events, book seats,
+                    manage bookings and attend the best medical seminars – all from the MedeMeetUp app.</p>
+            </div>
+            <div class="marquee-viewport mt-16 py-5" aria-label="MedeMeetUp app screenshots">
+                <div id="galleryTrack" class="marquee-track" style="--duration:34s">
+                    <div class="phone-card"><img src="img/feature-graphics/1.jpeg" alt="MedeMeetUp home screen"
+                            width="230" height="500" loading="lazy"></div>
+                    <div class="phone-card"><img src="img/feature-graphics/2.jpeg" alt="Browse medical events screen"
+                            width="230" height="500" loading="lazy"></div>
+                    <div class="phone-card"><img src="img/feature-graphics/3.jpeg" alt="Medical event details screen"
+                            width="230" height="500" loading="lazy"></div>
+                    <div class="phone-card"><img src="img/feature-graphics/4.jpeg" alt="Event booking screen"
+                            width="230" height="500" loading="lazy"></div>
+                    <div class="phone-card"><img src="img/feature-graphics/5.jpeg" alt="Booking confirmation screen"
+                            width="230" height="500" loading="lazy"></div>
+                    <div class="phone-card"><img src="img/feature-graphics/6.jpeg" alt="MedeMeetUp bookings screen"
+                            width="230" height="500" loading="lazy"></div>
+                    <div class="phone-card"><img src="img/feature-graphics/7.jpeg" alt="MedeMeetUp profile screen"
+                            width="230" height="500" loading="lazy"></div>
+                </div>
+            </div>
+            <div class="mx-auto mt-12 grid max-w-page gap-4 px-4 md:grid-cols-2 md:px-10 lg:grid-cols-4">
+                <div class="benefit-card flex gap-3 rounded-2xl border border-blue-100 bg-white p-5 shadow-soft"
+                    data-aos="flip-up"><span class="material-symbols-outlined text-primary">check_circle</span><span
+                        class="font-semibold">Beautiful & Easy to use Interface</span></div>
+                <div class="benefit-card flex gap-3 rounded-2xl border border-blue-100 bg-white p-5 shadow-soft"
+                    data-aos="flip-up" data-aos-delay="80"><span
+                        class="material-symbols-outlined text-primary">check_circle</span><span
+                        class="font-semibold">Secure Payments & Confirmation</span></div>
+                <div class="benefit-card flex gap-3 rounded-2xl border border-blue-100 bg-white p-5 shadow-soft"
+                    data-aos="flip-up" data-aos-delay="160"><span
+                        class="material-symbols-outlined text-primary">check_circle</span><span
+                        class="font-semibold">Personalized Recommendations</span></div>
+                <div class="benefit-card flex gap-3 rounded-2xl border border-blue-100 bg-white p-5 shadow-soft"
+                    data-aos="flip-up" data-aos-delay="240"><span
+                        class="material-symbols-outlined text-primary">check_circle</span><span
+                        class="font-semibold">Seamless Multi-device Support</span></div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="relative overflow-hidden bg-white py-24 md:py-32">
+            <div class="mx-auto max-w-page px-4 text-center md:px-10">
+                <p class="text-sm font-bold uppercase tracking-[.2em] text-primary">Four simple steps</p>
+                <h2 class="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl" data-aos="fade-up">How It
+                    Works?</h2>
+                <div class="connector relative mt-16 grid gap-6 md:grid-cols-4">
+                    <article class="step-card relative z-10 rounded-2xl border border-blue-100 bg-white p-7 shadow-soft"
+                        data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                        <div
+                            class="icon relative mx-auto grid h-16 w-16 place-items-center rounded-full bg-blue-50 text-primary">
+                            <span
+                                class="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-white">01</span><span
+                                class="material-symbols-outlined text-3xl">install_mobile</span>
+                        </div>
+                        <h3 class="mt-5 font-display text-xl font-bold">Download App</h3>
+                        <p class="mt-2 text-sm leading-6 text-on-surface-variant">Download the app and manage everything
+                            on the go.</p>
+                    </article>
+                    <article class="step-card relative z-10 rounded-2xl border border-blue-100 bg-white p-7 shadow-soft"
+                        data-aos="fade-up" data-aos-duration="800">
+                        <div
+                            class="icon relative mx-auto grid h-16 w-16 place-items-center rounded-full bg-blue-50 text-primary">
+                            <span
+                                class="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-white">02</span><span
+                                class="material-symbols-outlined text-3xl">search</span>
+                        </div>
+                        <h3 class="mt-5 font-display text-xl font-bold">Browse Events</h3>
+                        <p class="mt-2 text-sm leading-6 text-on-surface-variant">Explore events and seminars that
+                            interest you.</p>
+                    </article>
+                    <article class="step-card relative z-10 rounded-2xl border border-blue-100 bg-white p-7 shadow-soft"
+                        data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                        <div
+                            class="icon relative mx-auto grid h-16 w-16 place-items-center rounded-full bg-blue-50 text-primary">
+                            <span
+                                class="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-white">03</span><span
+                                class="material-symbols-outlined text-3xl">confirmation_number</span>
+                        </div>
+                        <h3 class="mt-5 font-display text-xl font-bold">Choose & Book</h3>
+                        <p class="mt-2 text-sm leading-6 text-on-surface-variant">Select your event and book your seat
+                            easily.</p>
+                    </article>
+                    <article class="step-card relative z-10 rounded-2xl border border-blue-100 bg-white p-7 shadow-soft"
+                        data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                        <div
+                            class="icon relative mx-auto grid h-16 w-16 place-items-center rounded-full bg-blue-50 text-primary">
+                            <span
+                                class="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-full bg-primary text-xs font-bold text-white">04</span><span
+                                class="material-symbols-outlined text-3xl">school</span>
+                        </div>
+                        <h3 class="mt-5 font-display text-xl font-bold">Attend & Grow</h3>
+                        <p class="mt-2 text-sm leading-6 text-on-surface-variant">Attend, learn, get certified and grow
+                            in your career.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="overflow-hidden bg-surface-container py-24 md:py-32">
+            <div class="mx-auto max-w-page px-4 text-center md:px-10" data-aos="fade-right" data-aos-duration="900">
+                <p class="text-sm font-bold uppercase tracking-[.2em] text-primary">Trusted by learners</p>
+                <h2 class="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">What Our Users Say</h2>
+            </div>
+            <div class="marquee-viewport mt-16 py-6" data-aos="fade-right" data-aos-duration="900">
+                <div id="testimonialTrack" class="marquee-track" style="--duration:30s">
+                    <article class="testimonial-card rounded-2xl bg-white p-8 shadow-soft"><span
+                            class="material-symbols-outlined text-5xl text-primary/20">format_quote</span>
+                        <p class="mt-3 min-h-[112px] italic leading-7 text-on-surface-variant">“MedeMeetUp has made it
+                            so
+                            easy to find and book the best medical seminars. Highly recommended for every medical
+                            student!”</p>
+                        <div class="mt-7 flex items-center gap-4">
+                            <div
+                                class="grid h-12 w-12 place-items-center rounded-full bg-blue-100 font-display font-bold text-primary">
+                                AM</div>
+                            <div>
+                                <h3 class="font-bold">Anjali Mehta</h3>
+                                <p class="text-xs text-on-surface-variant">3rd Year MBBS Student</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card rounded-2xl bg-white p-8 shadow-soft"><span
+                            class="material-symbols-outlined text-5xl text-primary/20">format_quote</span>
+                        <p class="mt-3 min-h-[112px] italic leading-7 text-on-surface-variant">“The app is smooth, easy
+                            to use and the events are top-notch. I love the e-certificate feature for my portfolio!”</p>
+                        <div class="mt-7 flex items-center gap-4">
+                            <div
+                                class="grid h-12 w-12 place-items-center rounded-full bg-blue-100 font-display font-bold text-primary">
+                                RS</div>
+                            <div>
+                                <h3 class="font-bold">Rahul Sharma</h3>
+                                <p class="text-xs text-on-surface-variant">Intern Doctor</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card rounded-2xl bg-white p-8 shadow-soft"><span
+                            class="material-symbols-outlined text-5xl text-primary/20">format_quote</span>
+                        <p class="mt-3 min-h-[112px] italic leading-7 text-on-surface-variant">“Great platform to learn,
+                            connect and grow with experts across different medical fields. A must-have tool for
+                            networking.”</p>
+                        <div class="mt-7 flex items-center gap-4">
+                            <div
+                                class="grid h-12 w-12 place-items-center rounded-full bg-blue-100 font-display font-bold text-primary">
+                                PS</div>
+                            <div>
+                                <h3 class="font-bold">Priya Singh</h3>
+                                <p class="text-xs text-on-surface-variant">Final Year MBBS</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="bg-white py-24 md:py-32">
+            <div class="mx-auto max-w-3xl px-4 md:px-10">
+                <div class="text-center" data-aos="fade-up" data-aos-duration="850">
+                    <p class="text-sm font-bold uppercase tracking-[.2em] text-primary">Questions, answered</p>
+                    <h2 class="mt-3 font-display text-4xl font-bold tracking-tight md:text-5xl">Frequently Asked
+                        Questions</h2>
+                    <p class="mt-5 text-on-surface-variant">Everything you need to know before you begin learning with
+                        MedeMeetUp.</p>
+                </div>
+                <div class="mt-12 space-y-4">
+                    <article class="faq-item rounded-2xl border border-outline-variant/40 bg-surface p-1 shadow-sm"
+                        data-aos="fade-up">
+                        <h3><button
+                                class="faq-button flex w-full items-center justify-between gap-4 rounded-xl px-5 py-5 text-left font-display text-lg font-bold"
+                                aria-expanded="false"><span>What is MedeMeetUp?</span><span
+                                    class="faq-icon material-symbols-outlined text-primary">expand_more</span></button>
+                        </h3>
+                        <div class="faq-answer">
+                            <div>
+                                <p class="px-5 pb-5 leading-7 text-on-surface-variant">MedeMeetUp is a medical learning
+                                    platform where students can discover, book and attend trusted seminars, workshops
+                                    and conferences.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="faq-item rounded-2xl border border-outline-variant/40 bg-surface p-1 shadow-sm"
+                        data-aos="fade-up">
+                        <h3><button
+                                class="faq-button flex w-full items-center justify-between gap-4 rounded-xl px-5 py-5 text-left font-display text-lg font-bold"
+                                aria-expanded="false"><span>How do I book a medical event?</span><span
+                                    class="faq-icon material-symbols-outlined text-primary">expand_more</span></button>
+                        </h3>
+                        <div class="faq-answer">
+                            <div>
+                                <p class="px-5 pb-5 leading-7 text-on-surface-variant">Browse available events on app,
+                                    choose
+                                    the one that suits you, reserve your seat and receive an instant booking
+                                    confirmation.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="faq-item rounded-2xl border border-outline-variant/40 bg-surface p-1 shadow-sm"
+                        data-aos="fade-up">
+                        <h3><button
+                                class="faq-button flex w-full items-center justify-between gap-4 rounded-xl px-5 py-5 text-left font-display text-lg font-bold"
+                                aria-expanded="false"><span>Are speakers and events verified?</span><span
+                                    class="faq-icon material-symbols-outlined text-primary">expand_more</span></button>
+                        </h3>
+                        <div class="faq-answer">
+                            <div>
+                                <p class="px-5 pb-5 leading-7 text-on-surface-variant">Yes. MedeMeetUp focuses on
+                                    trusted
+                                    events and experienced medical professionals so learners can book with confidence.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="faq-item rounded-2xl border border-outline-variant/40 bg-surface p-1 shadow-sm"
+                        data-aos="fade-up">
+                        <h3><button
+                                class="faq-button flex w-full items-center justify-between gap-4 rounded-xl px-5 py-5 text-left font-display text-lg font-bold"
+                                aria-expanded="false"><span>Will I receive a certificate?</span><span
+                                    class="faq-icon material-symbols-outlined text-primary">expand_more</span></button>
+                        </h3>
+                        <div class="faq-answer">
+                            <div>
+                                <p class="px-5 pb-5 leading-7 text-on-surface-variant">Eligible events provide
+                                    verifiable e-certificates that you can access from your profile after completing the
+                                    event.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="faq-item rounded-2xl border border-outline-variant/40 bg-surface p-1 shadow-sm"
+                        data-aos="fade-up">
+                        <h3><button
+                                class="faq-button flex w-full items-center justify-between gap-4 rounded-xl px-5 py-5 text-left font-display text-lg font-bold"
+                                aria-expanded="false"><span>Where can I manage my bookings?</span><span
+                                    class="faq-icon material-symbols-outlined text-primary">expand_more</span></button>
+                        </h3>
+                        <div class="faq-answer">
+                            <div>
+                                <p class="px-5 pb-5 leading-7 text-on-surface-variant">Your bookings, tickets,
+                                    confirmations and learning schedule are available together inside the MedeMeetUp
+                                    app.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="relative overflow-hidden bg-white px-4 py-24 md:px-10">
+            <div class="relative mx-auto max-w-page overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-700 via-primary to-indigo-900 px-6 py-16 text-center text-white shadow-premium md:px-16 md:py-20"
+                data-aos="zoom-in" data-aos-duration="950">
+                <div
+                    class="cta-orb absolute -left-16 -top-16 h-52 w-52 rounded-full border border-white/20 bg-white/10">
+                </div>
+                <div class="cta-orb absolute -bottom-24 right-8 h-64 w-64 rounded-full border border-cyan-200/20 bg-cyan-300/10"
+                    style="animation-delay:-2s"></div>
+                <div class="absolute left-1/2 top-0 h-44 w-96 -translate-x-1/2 rounded-full bg-blue-300/20 blur-3xl">
+                </div>
+                <div class="relative z-10">
+                    <p class="text-sm font-bold uppercase tracking-[.22em] text-blue-100">Don't Miss Out!</p>
+                    <h2 class="mt-4 font-display text-4xl font-bold tracking-tight md:text-5xl">Start Your Medical
+                        Learning<br class="hidden sm:block"> Journey Today.</h2>
+                    <p class="mx-auto mt-5 max-w-xl text-blue-100">Discover trusted events and build your medical
+                        career—all from one thoughtfully designed app.</p>
+                    <div class="mt-9 flex flex-wrap justify-center gap-4"><a class="store-button ring-1 ring-white/20"
+                            href="#" aria-label="Get MedeMeetUp on Google Play"><img
+                                src="img/googleplaandappicon/google-play.png" alt="Get it on Google Play" width="168"
+                                height="52" loading="lazy"></a><a class="store-button ring-1 ring-white/20" href="#"
+                            aria-label="Download MedeMeetUp on the App Store"><img
+                                src="img/googleplaandappicon/app-store.jpg" alt="Download on the App Store" width="168"
+                                height="52" loading="lazy"></a></div>
+                    <div
+                        class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold text-blue-100">
+                        <span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-lg">lock</span>Secure Booking</span><span
+                            class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-lg">task_alt</span>Instant
+                            Confirmation</span><span class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-lg">verified</span>Verified Events</span><span
+                            class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-lg">support_agent</span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-outline-variant/25 bg-surface-container-low pb-8 pt-16" data-aos="fade-up"
+        data-aos-duration="800">
+        <div class="mx-auto max-w-page px-4 md:px-10">
+            <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                <div><a href="#home" class="flex items-center" aria-label="MedeMeetUp home">
+                        <img src="img/logo/logo.png" alt="MedeMeetUp Logo" class="h-12 w-auto">
+                    </a>
+                    <p class="mt-5 leading-7 text-on-surface-variant">India's trusted platform for medical students to
+                        discover, book and attend the best medical seminars, workshops, and conferences.</p>
+                </div>
+                <div>
+                    <h2 class="font-display text-lg font-bold">Quick Links</h2>
+                    <ul class="mt-5 space-y-3 text-sm text-on-surface-variant">
+                        <li><a class="hover:text-primary" href="#home">Home</a></li>
+                        <li><a class="hover:text-primary" href="#features">Features</a></li>
+                        <li><a class="hover:text-primary" href="#how-it-works">How It Works</a></li>
+                        <li><a class="hover:text-primary" href="#testimonials">Testimonials</a></li>
+                        <li><a class="hover:text-primary" href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="font-display text-lg font-bold">Support</h2>
+                    <ul class="mt-5 space-y-3 text-sm text-on-surface-variant">
+                        <li><a class="hover:text-primary" href="privacy.html">Privacy Policy</a></li>
+                        <li><a class="hover:text-primary" href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a class="hover:text-primary" href="refund.html">Refund Policy</a></li>
+                        <li><a class="hover:text-primary" href="mailto:support.medemeetup@gmail.com">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="font-display text-lg font-bold">Social</h2>
+                    <div class="mt-5 flex flex-wrap gap-3"><a href="#" aria-label="MedeMeetUp on LinkedIn"
+                            class="grid h-11 w-11 place-items-center rounded-full bg-white font-bold text-primary shadow-sm transition hover:-translate-y-1 hover:bg-primary hover:text-white">in</a><a
+                            href="#" aria-label="MedeMeetUp on Instagram"
+                            class="grid h-11 w-11 place-items-center rounded-full bg-white text-primary shadow-sm transition hover:-translate-y-1 hover:bg-primary hover:text-white"><span
+                                class="material-symbols-outlined">photo_camera</span></a><a href="#"
+                            aria-label="MedeMeetUp on Facebook"
+                            class="grid h-11 w-11 place-items-center rounded-full bg-white font-display text-xl font-bold text-primary shadow-sm transition hover:-translate-y-1 hover:bg-primary hover:text-white">f</a><a
+                            href="#" aria-label="MedeMeetUp on YouTube"
+                            class="grid h-11 w-11 place-items-center rounded-full bg-white text-primary shadow-sm transition hover:-translate-y-1 hover:bg-primary hover:text-white"><span
+                                class="material-symbols-outlined">smart_display</span></a></div>
+                    <ul class="mt-6 space-y-3 text-sm text-on-surface-variant">
+                        <li class="flex gap-2"><span
+                                class="material-symbols-outlined text-xl text-primary">mail</span><a
+                                href="mailto:support.medemeetup@gmail.com">support.medemeetup@gmail.com</a></li>
+                        <li class="flex gap-2"><span
+                                class="material-symbols-outlined text-xl text-primary">location_on</span>Delhi, India
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-outline-variant/30 pt-8 text-center text-sm text-on-surface-variant md:flex-row">
+                <p>© <span id="year"></span> MedeMeetUp. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-5"><a class="hover:text-primary"
+                        href="privacy.html">Privacy Policy</a><a class="hover:text-primary"
+                        href="terms-conditions.html">Terms & Conditions</a><a class="hover:text-primary"
+                        href="refund.html">Refund Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTop"
+        class="scroll-top fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-full bg-primary text-white shadow-premium hover:-translate-y-1 hover:bg-primary-container"
+        type="button" aria-label="Scroll to top"><span class="material-symbols-outlined">arrow_upward</span></button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            AOS.init({ once: true, offset: 80, duration: 850, easing: 'ease-out-cubic', disable: reducedMotion });
+
+            let lenis;
+            if (!reducedMotion && window.Lenis) {
+                lenis = new Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: .9 });
+                const raf = time => { lenis.raf(time); requestAnimationFrame(raf); };
+                requestAnimationFrame(raf);
+            }
+
+            const navbar = document.getElementById('navbar');
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = menuButton.querySelector('.material-symbols-outlined');
+            const closeMenu = () => { mobileMenu.classList.add('hidden'); navbar.classList.remove('menu-open'); menuButton.setAttribute('aria-expanded', 'false'); menuIcon.textContent = 'menu'; };
+            menuButton.addEventListener('click', () => {
+                const opening = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden'); navbar.classList.toggle('menu-open', opening);
+                menuButton.setAttribute('aria-expanded', String(opening)); menuIcon.textContent = opening ? 'close' : 'menu';
+            });
+
+            const scrollLinks = document.querySelectorAll('a[href^="#"]');
+            scrollLinks.forEach(link => link.addEventListener('click', event => {
+                const selector = link.getAttribute('href');
+                if (selector === '#') return;
+                const target = document.querySelector(selector);
+                if (!target) return;
+                event.preventDefault(); closeMenu();
+                if (lenis) lenis.scrollTo(target, { offset: -78 }); else target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+            }));
+
+            const scrollTopButton = document.getElementById('scrollTop');
+            const updateNav = () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 20);
+                scrollTopButton.classList.toggle('visible', window.scrollY > 300);
+            };
+            updateNav(); window.addEventListener('scroll', updateNav, { passive: true });
+            scrollTopButton.addEventListener('click', () => lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' }));
+            const navLinks = [...document.querySelectorAll('.nav-link')];
+            const observedSections = ['home', 'features', 'how-it-works', 'testimonials', 'faq'].map(id => document.getElementById(id));
+            const sectionObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => { if (entry.isIntersecting) navLinks.forEach(link => link.classList.toggle('active', link.hash === '#' + entry.target.id)); });
+            }, { rootMargin: '-35% 0px -55%', threshold: 0 });
+            observedSections.forEach(section => sectionObserver.observe(section));
+
+            const duplicateTrack = track => {
+                const sourceItems = [...track.children];
+                while (track.scrollWidth < window.innerWidth + 450) {
+                    sourceItems.forEach(item => {
+                        const filler = item.cloneNode(true);
+                        filler.setAttribute('aria-hidden', 'true');
+                        filler.querySelectorAll('img').forEach(img => img.alt = '');
+                        track.appendChild(filler);
+                    });
+                }
+                [...track.children].forEach(item => { const clone = item.cloneNode(true); clone.setAttribute('aria-hidden', 'true'); clone.querySelectorAll('img').forEach(img => img.alt = ''); track.appendChild(clone); });
+            };
+            duplicateTrack(document.getElementById('galleryTrack'));
+            duplicateTrack(document.getElementById('testimonialTrack'));
+
+            let counted = false;
+            const statsObserver = new IntersectionObserver(entries => {
+                if (!entries[0].isIntersecting || counted) return;
+                counted = true;
+                document.querySelectorAll('.counter').forEach(element => {
+                    const value = Number(element.dataset.value);
+                    if (window.countUp && !reducedMotion) {
+                        const counter = new countUp.CountUp(element, value, { duration: 2.2, separator: ',', useEasing: true });
+                        if (!counter.error) counter.start(); else element.textContent = value.toLocaleString();
+                    } else element.textContent = value.toLocaleString();
+                });
+                statsObserver.disconnect();
+            }, { threshold: .4 });
+            statsObserver.observe(document.getElementById('stats'));
+
+            document.querySelectorAll('.faq-button').forEach(button => button.addEventListener('click', () => {
+                const item = button.closest('.faq-item');
+                const opening = !item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(openItem => { openItem.classList.remove('open'); openItem.querySelector('.faq-button').setAttribute('aria-expanded', 'false'); });
+                if (opening) item.classList.add('open');
+                button.setAttribute('aria-expanded', String(opening));
+            }));
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+            if (window.location.hash) {
+                const initialTarget = document.querySelector(window.location.hash);
+                if (initialTarget) setTimeout(() => lenis ? lenis.scrollTo(initialTarget, { offset: -78, duration: 1.15 }) : initialTarget.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' }), 120);
+            }
+        });
+    </script>
+</body>
+
+</html>
